@@ -61,7 +61,7 @@ async function waitForAccept(
     app.get('/callback', (req, res) => {
       if (req.query.code && req.query.state === state) {
         res.send('OK');
-        server.close(() => console.log('[🟢 lta-iu]', 'server closed'));
+        server.close(() => console.log('[🟢 lta-fav]', 'server closed'));
         resolve({
           code: req.query.code as string,
           state: req.query.state as string,
@@ -72,7 +72,7 @@ async function waitForAccept(
     });
 
     server = app.listen(port, () => {
-      console.log('[​🟡​​ lta-iu]', 'waiting on port 4444 for callback...');
+      console.log('[​🟡​​ lta-fav]', 'waiting on port 4444 for callback...');
     });
   });
 }

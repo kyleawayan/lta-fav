@@ -29,6 +29,7 @@ export default async function setStatus(
   spotify_token: string,
   currentArtist: string,
   currentTrack: string,
+  favoriteArtist: string,
   rpc: DiscordRPC.Client
 ): Promise<Record<string, string>> {
   return new Promise<Record<string, string>>((resolve, reject) => {
@@ -49,20 +50,20 @@ export default async function setStatus(
             currentArtist !== toSetDcStatusString ||
             currentTrack !== toSetTrack
           ) {
-            if (currentArtist !== 'IU') {
-              // if the previous artist wasn't IU
+            if (currentArtist !== favoriteArtist) {
+              // if the previous artist wasn't favoriteArtist
               stopwatch.resetStopwatch();
             }
-            if (toSetDcStatusString === 'IU') {
+            if (toSetDcStatusString === favoriteArtist) {
               rpc.setActivity({
                 state: spotifyResponse.data.item.name,
                 details: 'Listening to',
                 instance: true,
                 startTimestamp: stopwatch.time,
-                largeImageKey: '4',
+                largeImageKey: '1',
                 largeImageText: '😍🥰💞💗',
               });
-              console.log('[🟢 lta-iu]', 'activity set');
+              console.log('[🟢 lta-fav]', 'activity set');
             } else {
               stopwatch.resetStopwatch();
               rpc.clearActivity();

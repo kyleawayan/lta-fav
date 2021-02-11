@@ -109,10 +109,10 @@ const createWindow = async () => {
       nodeIntegration: true,
     },
     title: 'lta',
-    transparent: true,
-    vibrancy: 'dark',
-    backgroundColor: '#00ffffff',
-    titleBarStyle: 'hiddenInset',
+    // transparent: true,
+    // vibrancy: 'dark',
+    // backgroundColor: '#00ffffff',
+    // titleBarStyle: 'hiddenInset',
   });
 
   // Start IPC Listeners
@@ -130,7 +130,7 @@ const createWindow = async () => {
         port
       )
         .then(() => mainWindow?.loadURL(`file://${__dirname}/index.html`))
-        .catch((error) => console.error('[🔴 lta-iu]', error));
+        .catch((error) => console.error('[🔴 lta-fav]', error));
     }
   })();
 
@@ -143,7 +143,7 @@ const createWindow = async () => {
       port
     )
       .then(() => mainWindow?.loadURL(`file://${__dirname}/index.html`))
-      .catch((error) => console.error('[🔴 lta-iu]', error));
+      .catch((error) => console.error('[🔴 lta-fav]', error));
   });
 
   // @TODO: Use 'ready-to-show' event

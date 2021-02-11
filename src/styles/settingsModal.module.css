@@ -1,0 +1,16 @@
+.form {
+  position: relative;
+  height: 100%;
+}
+
+.form input {
+  margin-bottom: 20px;
+}
+
+.form button {
+  background-color: rgb(76, 76, 79);
+}
+
+.form button:hover {
+  background-color: rgb(104, 104, 109);
+}

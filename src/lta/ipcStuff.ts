@@ -1,20 +1,21 @@
+/* eslint-disable promise/always-return */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { ipcMain } from 'electron';
 import * as keytar from 'keytar';
 import * as DiscordRPC from 'discord-rpc';
+import Store from 'electron-store';
 import setDcStatus from './setDcStatus';
 import refreshToToken from '../spotify/refreshToToken';
 
-const discordClientId = '809169276698624001';
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
+
+const store = new Store();
 
 export default function ipcStuff(clientId: string) {
   let accessToken: string;
   let currentArtist = '';
   let currentTrack = '';
   let running = false;
-
-  rpc.login({ clientId: discordClientId }).catch(console.error);
 
   async function getToken(refresh_token: string) {
     let validRefreshToken: string;
@@ -50,8 +51,28 @@ export default function ipcStuff(clientId: string) {
     return running;
   });
 
+  ipcMain.handle('check-settings-values', () => {
+    const artist = store.get('artist');
+    const discordAppId = store.get('discordAppId');
+    return { artist, discordAppId };
+  });
+
+  ipcMain.handle('set-artist', (_, args) => {
+    store.set('artist', args);
+  });
+
+  ipcMain.handle('set-appId', (_, args) => {
+    store.set('discordAppId', args);
+  });
+
   function setStatus() {
-    setDcStatus(accessToken, currentArtist, currentTrack, rpc)
+    setDcStatus(
+      accessToken,
+      currentArtist,
+      currentTrack,
+      store.get('artist') as string,
+      rpc
+    )
       .then((data) => {
         currentArtist = data.artist;
         currentTrack = data.track;
@@ -95,7 +116,16 @@ export default function ipcStuff(clientId: string) {
 
   ipcMain.handle('toggle-status', async (_, args) => {
     if (args === 'start') {
-      timer.start();
+      const discordClientId = store.get('discordAppId') as string;
+      rpc
+        .login({ clientId: discordClientId })
+        .then(() => {
+          timer.start();
+        })
+        .catch((error) => {
+          timer.stop();
+          console.error(error);
+        });
     } else {
       timer.stop();
     }
