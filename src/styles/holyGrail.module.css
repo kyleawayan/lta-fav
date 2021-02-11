@@ -58,6 +58,11 @@
   place-items: center;
   margin: 15px;
   height: 98vh;
+  width: 150px;
+}
+
+.settings {
+  width: 100%;
 }
 
 .settingsContainer {

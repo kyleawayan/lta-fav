@@ -1,7 +1,7 @@
 {
   "name": "lta-fav",
   "productName": "lta-fav",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "show a rich prescence when you are listening to your favorite artist",
   "main": "./main.prod.js",
   "author": {
