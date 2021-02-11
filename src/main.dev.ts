@@ -24,6 +24,10 @@ const port = 4444;
 const clientId = '5fb6c029e18742a3bdb3576de6eb2181';
 const redirectUri = `http://localhost:${port}/callback`;
 
+// delete old stuff from lta
+keytar.deletePassword('lta', 'refresh_token');
+keytar.deletePassword('lta', 'discord_token');
+
 export default class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -79,7 +83,7 @@ const createWindow = async () => {
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'show lta-iu',
+      label: 'show lta-fav',
       click() {
         mainWindow?.show();
       },
@@ -93,7 +97,7 @@ const createWindow = async () => {
     },
   ]);
   trayIcon = new Tray(getAssetPath('icons/16x16.png'));
-  trayIcon.setTitle('lta-iu');
+  trayIcon.setTitle('lta-fav');
   trayIcon.setContextMenu(contextMenu);
 
   mainWindow = new BrowserWindow({
@@ -115,7 +119,7 @@ const createWindow = async () => {
   ipcStuff(clientId);
 
   (async () => {
-    const refreshToken = await keytar.getPassword('lta', 'refresh_token');
+    const refreshToken = await keytar.getPassword('lta-fav', 'refresh_token');
     if (refreshToken) {
       mainWindow.loadURL(`file://${__dirname}/index.html`);
     } else {
@@ -131,7 +135,7 @@ const createWindow = async () => {
   })();
 
   ipcMain.handle('sign-out', async () => {
-    await keytar.deletePassword('lta', 'refresh_token');
+    await keytar.deletePassword('lta-fav', 'refresh_token');
     authorizeWithSpotifyAndStoreRefreshToken(
       mainWindow as BrowserWindow,
       clientId,

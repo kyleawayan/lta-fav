@@ -127,7 +127,7 @@ export default async function authorizeWithSpotifyAndStoreRefreshToken(
           redirectUri
         );
         await keytar.setPassword(
-          'lta',
+          'lta-fav',
           'refresh_token',
           tokenResponse.refresh_token
         );

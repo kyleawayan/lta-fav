@@ -1,13 +1,13 @@
 {
-  "name": "lta-iu",
-  "productName": "lta-iu",
+  "name": "lta-fav",
+  "productName": "lta-fav",
   "version": "0.3.3",
-  "description": "show a rich prescence when you are listening to IU",
+  "description": "show a rich prescence when you are listening to your favorite artist",
   "main": "./main.prod.js",
   "author": {
     "name": "Kyle Awayan",
     "email": "kyle@awayan.com",
-    "url": "https://github.com/kyleawayan/lta"
+    "url": "https://github.com/kyleawayan/lta-fav"
   },
   "scripts": {
     "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
