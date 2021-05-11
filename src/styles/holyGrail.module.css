@@ -1,0 +1,71 @@
+.holyGrail {
+  display: grid;
+  height: 100vh;
+  grid-template: auto 1fr auto / auto 1fr auto;
+}
+
+.header {
+  grid-column: 1 / 4;
+  -webkit-app-region: drag;
+}
+
+.leftSidebar {
+  grid-column: 2 / 2;
+}
+
+.rightSidebar {
+  grid-column: 3 / 4;
+  background-color: rgb(76, 76, 79);
+  margin-top: -35px;
+  margin-right: -10px;
+}
+
+.footer {
+  text-align: center;
+  grid-column: 1 / 4;
+  padding: 2rem;
+}
+
+/* now playing stuff --------- */
+
+.nowPlayingContainer {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+  margin-left: 10vw;
+}
+
+.nowPlaying {
+  display: grid;
+  place-items: left;
+  width: 100%;
+}
+
+.listen {
+  font-size: 5vh;
+}
+
+.artist {
+  font-family: 'InterSemiBold';
+  font-size: 10vh;
+  margin-left: -3px;
+}
+
+/* settings stuff ---------- */
+
+.settingsContainer {
+  display: grid;
+  place-items: center;
+  margin: 15px;
+  height: 98vh;
+  width: 150px;
+}
+
+.settings {
+  width: 100%;
+}
+
+.settingsContainer {
+  display: grid;
+  place-items: center;
+}

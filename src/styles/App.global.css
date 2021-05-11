@@ -1,0 +1,69 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Inter-Regular.woff2?v=3.15') format('woff2'),
+    url('../fonts/Inter-Regular.woff?v=3.15') format('woff');
+}
+
+@font-face {
+  font-family: 'InterSemiBold';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Inter-SemiBold.woff2?v=3.15') format('woff2'),
+    url('../fonts/Inter-SemiBold.woff?v=3.15') format('woff');
+}
+
+body {
+  color: white;
+  height: 100vh;
+  margin: 10px;
+  font-family: 'Inter';
+  overflow-y: hidden;
+  background-color: rgb(51, 51, 53);
+}
+
+button {
+  color: white;
+  background-color: rgb(51, 51, 53);
+  border: none;
+  margin: 2px;
+  padding: 8px;
+  transition: 0.1s;
+  font-family: 'Inter';
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  background-color: rgb(104, 104, 109);
+  transition: 0.1s;
+}
+
+/* thank you Lucas Oliveira for the fancy input text box! https://codepen.io/lucasyem/pen/ZEEYKdj */
+
+input {
+  font-family: inherit;
+  border: 0;
+  border-bottom: 2px solid grey;
+  outline: 0;
+  color: white;
+  padding: 6px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  width: 100%;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  display: block;
+}
+
+input:focus {
+  border-bottom: 2px solid white;
+}
